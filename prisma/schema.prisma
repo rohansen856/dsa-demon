@@ -52,6 +52,7 @@ model User {
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
 
   accounts Account[]
+  profile  Profile[]
   sessions Session[]
   Post     Post[]
 
@@ -61,6 +62,20 @@ model User {
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 
   @@map(name: "users")
+}
+
+model Profile {
+  id                String   @id @default(cuid())
+  userId            String
+  leetcode          String?
+  codechef          String?
+  codeforces        String?
+  createdAt         DateTime @default(now()) @map(name: "created_at")
+  updatedAt         DateTime @default(now()) @map(name: "updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map(name: "profiles")
 }
 
 model VerificationToken {

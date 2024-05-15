@@ -3,10 +3,10 @@ import { redirect } from "next/navigation"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
 import { DashboardHeader } from "@/components/header"
 import { PostCreateButton } from "@/components/post-create-button"
-import { PostItem } from "@/components/post-item"
 import { DashboardShell } from "@/components/shell"
 
 export const metadata = {
@@ -40,23 +40,26 @@ export default async function DashboardPage() {
       <DashboardHeader heading="Posts" text="Create and manage posts.">
         <PostCreateButton />
       </DashboardHeader>
-      <div>
-        {posts?.length ? (
-          <div className="divide-y divide-border rounded-md border">
-            {posts.map((post) => (
-              <PostItem key={post.id} post={post} />
-            ))}
-          </div>
-        ) : (
-          <EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No posts created</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any posts yet. Start creating content.
-            </EmptyPlaceholder.Description>
-            <PostCreateButton variant="outline" />
-          </EmptyPlaceholder>
-        )}
+      <div className="flex items-center gap-6">
+        <div className="flex flex-col rounded-full border-4 border-dashed p-2 lg:flex-row">
+          <Avatar className="size-32">
+            <AvatarImage
+              src={user.image ?? "https://github.com/shadcn.png"}
+              alt="@shadcn"
+            />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </div>
+
+        <div className="h-full">
+          <p className="text-md lg:text-xl 2xl:text-3xl">{user.name}</p>
+          <span className="space-x-2">
+            <Badge className="mt-2 border">Github</Badge>
+            <Badge className="mt-2">Github</Badge>
+            <Badge className="mt-2">Github</Badge>
+            <Badge className="mt-2">Github</Badge>
+          </span>
+        </div>
       </div>
     </DashboardShell>
   )

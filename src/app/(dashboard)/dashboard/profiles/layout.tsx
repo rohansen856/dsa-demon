@@ -1,13 +1,8 @@
 import { notFound } from "next/navigation"
 
-import { dashboardConfig } from "@/config/dashboard"
 import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
-import { MainNav } from "@/components/shared/main-nav"
-import { DashboardNav } from "@/components/shared/nav"
-import { SiteFooter } from "@/components/shared/site-footer"
 import { DashboardShell } from "@/components/shell"
-import { UserAccountNav } from "@/components/user-account-nav"
 
 import { ProfileTabButton } from "./components/profile-tab-button"
 

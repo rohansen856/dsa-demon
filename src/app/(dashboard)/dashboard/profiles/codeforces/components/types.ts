@@ -24,7 +24,7 @@ export interface User {
 }
 
 // Zod object schema
-export const UserSchema = z.object({
+export const CFUserSchema = z.object({
   handle: z.string(),
   email: z.string().optional(),
   vkId: z.string().optional(),
@@ -45,3 +45,52 @@ export const UserSchema = z.object({
   avatar: z.string(),
   titlePhoto: z.string(),
 })
+
+// Define TypeScript types
+export interface ContestData {
+  contestId: number
+  contestName: string
+  handle: string
+  rank: number
+  ratingUpdateTimeSeconds: number
+  oldRating: number
+  newRating: number
+}
+
+export interface ContestResult {
+  status: string
+  result: ContestData[]
+}
+
+// Define Zod schema
+export const ContestDataSchema = z.object({
+  contestId: z.number(),
+  contestName: z.string(),
+  handle: z.string(),
+  rank: z.number(),
+  ratingUpdateTimeSeconds: z.number(),
+  oldRating: z.number(),
+  newRating: z.number(),
+})
+
+export const ContestResultSchema = z.object({
+  status: z.string(),
+  result: z.array(ContestDataSchema),
+})
+
+// Example usage:
+export const data: ContestResult = {
+  status: "OK",
+  result: [
+    {
+      contestId: 1920,
+      contestName: "Codeforces Round 919 (Div. 2)",
+      handle: "rohansen856",
+      rank: 13097,
+      ratingUpdateTimeSeconds: 1705163700,
+      oldRating: 0,
+      newRating: 397,
+    },
+    // Add more contest data objects here
+  ],
+}
