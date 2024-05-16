@@ -1,17 +1,34 @@
+import { redirect } from "next/navigation"
 import axios from "axios"
 
 import { env } from "@/env.mjs"
+import { db } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
 
 import { CardDemo } from "../components/profile-card"
 import { DifficultyChart } from "./components/difficulty-chart"
 import { TotalSubmissionsSchema } from "./components/types"
 
 export default async function Leetcode() {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/login")
+  }
+  // Find if the profile exists.
+  const profile = await db.profile.findFirst({
+    where: { userId: user.id },
+    select: { leetcode: true },
+  })
+
+  if (!profile || !profile.leetcode) return "account not set"
+
   const { data, status } = await axios.get(
-    `${env.LEETCODE_API_ROUTE}rohansen856`
+    `${env.LEETCODE_API_ROUTE}${profile?.leetcode}`
   )
-  if (!data) return
+  if (!data) return "account not found"
   const userData = TotalSubmissionsSchema.parse(data)
+
   return (
     <div className="flex pt-4">
       <div className="flex w-full flex-col items-center justify-between xl:flex-row">

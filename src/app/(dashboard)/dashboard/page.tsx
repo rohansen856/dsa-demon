@@ -29,7 +29,10 @@ export default async function DashboardPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
+      <DashboardHeader
+        heading="Dashboard"
+        text="Manage your account from here."
+      >
         <PostCreateButton />
       </DashboardHeader>
       <div className="mb-6 flex flex-col items-start gap-6 rounded-lg bg-secondary p-4">

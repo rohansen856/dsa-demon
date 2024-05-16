@@ -1,6 +1,9 @@
+import { redirect } from "next/navigation"
 import axios from "axios"
 
 import { env } from "@/env.mjs"
+import { db } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
 import { Separator } from "@/components/ui/separator"
 
 import { CardDemo } from "../components/profile-card"
@@ -9,17 +12,31 @@ import { RatingGraph } from "./components/rating-graph"
 import { CFUserSchema, ContestResultSchema } from "./components/types"
 
 export default async function Codeforces() {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/login")
+  }
+  // Find if the profile exists.
+  const profile = await db.profile.findFirst({
+    where: { userId: user.id },
+    select: { codeforces: true },
+  })
+
+  if (!profile || !profile.codeforces) return "account not set"
+
   const {
     data: { status, result },
-  } = await axios.get(`${env.CODEFORCES_API_ROUTE}ruchi2612`)
-  if (status !== "OK") return
+  } = await axios.get(`${env.CODEFORCES_API_ROUTE}${profile.codeforces}`)
+  if (status !== "OK") return "account not found"
   const userData = CFUserSchema.parse(result[0])
 
   const { data, statusText } = await axios.get(
-    `https://codeforces.com/api/user.rating?handle=ruchi2612`
+    `https://codeforces.com/api/user.rating?handle=${profile.codeforces}`
   )
-  if (!data) return
+  if (!data) return "account not found"
   const ratingData = ContestResultSchema.parse(data)
+
   return (
     <div className="flex flex-col items-center justify-center pt-4">
       <div className="flex w-full flex-col items-center justify-between xl:flex-row">

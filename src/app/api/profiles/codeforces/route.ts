@@ -48,3 +48,30 @@ export async function POST(req: Request) {
     return new Response(null, { status: 500 })
   }
 }
+
+export async function GET(req: Request) {
+  try {
+    // Ensure user is authentication and has access to this user.
+    const session = await getServerSession(authOptions)
+    if (!session?.user || !session.user.id) {
+      return new Response(null, { status: 403 })
+    }
+
+    // Find if the profile exists.
+    const profile = await db.profile.findFirst({
+      where: { userId: session.user.id },
+      select: { codeforces: true },
+    })
+
+    if (!profile || !profile.codeforces)
+      return new Response(null, { status: 200 })
+
+    return new Response(JSON.stringify(profile), { status: 200 })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 })
+    }
+
+    return new Response(null, { status: 500 })
+  }
+}
