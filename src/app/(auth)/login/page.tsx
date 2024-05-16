@@ -34,19 +34,29 @@ export default function LoginPage() {
             Welcome back
           </h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email to sign in to your account
+            Sign in to your account
           </p>
         </div>
         <Suspense>
           <UserAuthForm />
         </Suspense>
+
         <p className="px-8 text-center text-sm text-muted-foreground">
+          By signing up, you agree to our{" "}
           <Link
-            href="/register"
+            href="/terms"
             className="hover:text-brand underline underline-offset-4"
           >
-            Don&apos;t have an account? Sign Up
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/privacy"
+            className="hover:text-brand underline underline-offset-4"
+          >
+            Privacy Policy
           </Link>
+          .
         </p>
       </div>
     </div>

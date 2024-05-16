@@ -31,9 +31,9 @@ export function Friendslist() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Products</CardTitle>
+        <CardTitle>Friends</CardTitle>
         <CardDescription>
-          Manage your products and view their sales performance.
+          List of all your coding buddies and friends.
         </CardDescription>
       </CardHeader>
       <CardContent>
