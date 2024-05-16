@@ -26,7 +26,7 @@ export function Sidemenu() {
 
   const menuItems = [
     {
-      label: "Playground",
+      label: "Dashboard",
       href: "/dashboard",
       icon: <SquareTerminal className="size-5" />,
     },

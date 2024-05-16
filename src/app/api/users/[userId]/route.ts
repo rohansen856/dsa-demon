@@ -48,3 +48,34 @@ export async function PATCH(
     return new Response(null, { status: 500 })
   }
 }
+
+export async function GET(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  try {
+    // Validate the route context.
+    const { params } = routeContextSchema.parse(context)
+
+    // Ensure user is authentication and has access to this user.
+    const session = await getServerSession(authOptions)
+    if (!session?.user || params.userId !== session?.user.id) {
+      return new Response(null, { status: 403 })
+    }
+
+    // Find the user.
+    const data = await db.user.findUnique({
+      where: {
+        id: params.userId,
+      },
+    })
+
+    return new Response(JSON.stringify(data), { status: 200 })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 })
+    }
+
+    return new Response(null, { status: 500 })
+  }
+}
