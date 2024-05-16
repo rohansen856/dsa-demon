@@ -66,7 +66,7 @@ model User {
 
 model Profile {
   id                String   @id @default(cuid())
-  userId            String
+  userId            String   @unique
   leetcode          String?
   codechef          String?
   codeforces        String?

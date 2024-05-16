@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation"
+import { z } from "zod"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
@@ -8,6 +9,8 @@ import { Badge } from "@/components/ui/badge"
 import { DashboardHeader } from "@/components/header"
 import { PostCreateButton } from "@/components/post-create-button"
 import { DashboardShell } from "@/components/shell"
+
+import { ProfilesForm } from "./components/profiles-form"
 
 export const metadata = {
   title: "Dashboard",
@@ -20,19 +23,8 @@ export default async function DashboardPage() {
     redirect(authOptions?.pages?.signIn || "/login")
   }
 
-  const posts = await db.post.findMany({
-    where: {
-      authorId: user.id,
-    },
-    select: {
-      id: true,
-      title: true,
-      published: true,
-      createdAt: true,
-    },
-    orderBy: {
-      updatedAt: "desc",
-    },
+  const profiles = await db.profile.findUnique({
+    where: { userId: user.id },
   })
 
   return (
@@ -40,7 +32,7 @@ export default async function DashboardPage() {
       <DashboardHeader heading="Posts" text="Create and manage posts.">
         <PostCreateButton />
       </DashboardHeader>
-      <div className="flex items-center gap-6">
+      <div className="mb-6 flex flex-col items-start gap-6 rounded-lg bg-secondary p-4">
         <div className="flex flex-col rounded-full border-4 border-dashed p-2 lg:flex-row">
           <Avatar className="size-32">
             <AvatarImage
@@ -51,16 +43,21 @@ export default async function DashboardPage() {
           </Avatar>
         </div>
 
-        <div className="h-full">
+        <div className="">
           <p className="text-md lg:text-xl 2xl:text-3xl">{user.name}</p>
           <span className="space-x-2">
-            <Badge className="mt-2 border">Github</Badge>
             <Badge className="mt-2">Github</Badge>
-            <Badge className="mt-2">Github</Badge>
-            <Badge className="mt-2">Github</Badge>
+            {profiles?.leetcode && <Badge className="mt-2">Leetcode</Badge>}
+            {profiles?.codechef && <Badge className="mt-2">Codechef</Badge>}
+            {profiles?.codeforces && <Badge className="mt-2">Codeforces</Badge>}
           </span>
         </div>
       </div>
+      <ProfilesForm
+        leetcode={profiles?.leetcode ?? null}
+        codechef={profiles?.codechef ?? null}
+        codeforces={profiles?.codeforces ?? null}
+      />
     </DashboardShell>
   )
 }
