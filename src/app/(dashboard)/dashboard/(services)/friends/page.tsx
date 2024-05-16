@@ -1,7 +1,22 @@
+import { redirect } from "next/navigation"
+
+import { db } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
+
 import { Friendslist } from "./components/friends-list"
 import { SearchUser } from "./components/search-user"
 
 export default async function Friends() {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect("/login")
+  }
+
+  const friends = await db.friends.findMany({
+    where: { userId: user.id },
+  })
+
   return (
     <div className="flex grid-cols-3 flex-col-reverse gap-4 lg:grid">
       <div className="col-span-2 p-4">

@@ -78,6 +78,14 @@ model Profile {
   @@map(name: "profiles")
 }
 
+model Friends {
+  id                String   @id @default(cuid())
+  userId            String
+  friendId          String
+  
+  @@map(name: "friends")
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique

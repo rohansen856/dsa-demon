@@ -1,8 +1,6 @@
 import { redirect } from "next/navigation"
-import { z } from "zod"
 
 import { dashboardConfig } from "@/config/dashboard"
-import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -23,7 +21,7 @@ export default async function DashboardPage() {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login")
+    redirect("/login")
   }
 
   const profiles = await db.profile.findUnique({

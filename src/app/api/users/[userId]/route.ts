@@ -59,9 +59,6 @@ export async function GET(
 
     // Ensure user is authentication and has access to this user.
     const session = await getServerSession(authOptions)
-    if (!session?.user || params.userId !== session?.user.id) {
-      return new Response(null, { status: 403 })
-    }
 
     // Find the user.
     const data = await db.user.findUnique({
