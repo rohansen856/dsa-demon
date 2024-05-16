@@ -49,9 +49,14 @@ export function ProfileInputForm(props: ProfileInputFormProps) {
         ...data,
         profile: props.name,
       })
+      if (response.status === 202)
+        return toast({
+          title: "Profile Updated",
+          description: `Your ${props.label} profile data has been succesfully updated`,
+        })
       return toast({
-        title: "Profile Updated",
-        description: `Your ${props.label} profile data has been succesfully updated`,
+        title: "Profile Not Updated",
+        description: `We were unable to update your ${props.label} profile data`,
       })
     } catch (error) {
       return toast({

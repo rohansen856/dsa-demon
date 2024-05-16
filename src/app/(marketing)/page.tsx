@@ -142,8 +142,8 @@ export default async function IndexPage() {
         </div>
         <div className="mx-auto text-center md:max-w-[58rem]">
           <p className="leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            rcsen-next-template also includes a blog and a full-featured
-            documentation site built using Contentlayer and MDX.
+            dsa-demon also includes a blog and a full-featured documentation
+            site built using Contentlayer and MDX.
           </p>
         </div>
       </section>
@@ -153,8 +153,8 @@ export default async function IndexPage() {
             Proudly Open Source
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            rcsen-next-template is open source and powered by open source
-            software. <br /> The code is available on{" "}
+            dsa-demon is open source and powered by open source software. <br />{" "}
+            The code is available on{" "}
             <Link
               href={siteConfig.links.github}
               target="_blank"

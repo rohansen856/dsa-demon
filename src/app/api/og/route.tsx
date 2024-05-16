@@ -94,7 +94,7 @@ export async function GET(req: Request) {
               tw="flex text-xl"
               style={{ fontFamily: "Inter", fontWeight: "normal" }}
             >
-              tx.rcsen-next-template.com
+              tx.dsa-demon.com
             </div>
             <div
               tw="flex items-center text-xl"
@@ -116,9 +116,7 @@ export async function GET(req: Request) {
                   stroke-linejoin="round"
                 />
               </svg>
-              <div tw="flex ml-2">
-                github.com/rcsen-next-template/rcsen-next-template
-              </div>
+              <div tw="flex ml-2">github.com/dsa-demon/dsa-demon</div>
             </div>
           </div>
         </div>

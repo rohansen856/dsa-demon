@@ -5,7 +5,7 @@ import { env } from "@/env.mjs"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 
-import { CardDemo } from "../components/profile-card"
+import { ProfileCard } from "../components/profile-card"
 import { DifficultyChart } from "./components/difficulty-chart"
 import { TotalSubmissionsSchema } from "./components/types"
 
@@ -23,16 +23,26 @@ export default async function Leetcode() {
 
   if (!profile || !profile.leetcode) return "account not set"
 
-  const { data, status } = await axios.get(
-    `${env.LEETCODE_API_ROUTE}${profile?.leetcode}`
-  )
-  if (!data) return "account not found"
-  const userData = TotalSubmissionsSchema.parse(data)
+  let userData
+  try {
+    const { data, status } = await axios.get(
+      `${env.LEETCODE_API_ROUTE}${profile?.leetcode}`
+    )
+    if (!data) return "account not found"
+
+    userData = TotalSubmissionsSchema.parse(data)
+  } catch (error) {
+    userData = null
+  }
+  if (!userData) return "account not found"
 
   return (
     <div className="flex pt-4">
       <div className="flex w-full flex-col items-center justify-between xl:flex-row">
-        <CardDemo />
+        <ProfileCard
+          username={profile.leetcode}
+          url={`https://leetcode.com/u/${profile.leetcode}`}
+        />
         <div className="p-2">
           <DifficultyChart
             hard={userData.hardSolved}

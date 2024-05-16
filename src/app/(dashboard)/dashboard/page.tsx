@@ -36,7 +36,7 @@ export default async function DashboardPage() {
         <PostCreateButton />
       </DashboardHeader>
       <div className="mb-6 flex flex-col items-start gap-6 rounded-lg bg-secondary p-4">
-        <div className="flex flex-col rounded-full border-4 border-dashed p-2 lg:flex-row">
+        <div className="flex flex-col rounded-full border-4 border-dashed border-background p-2 duration-300 hover:scale-105 lg:flex-row">
           <Avatar className="size-32">
             <AvatarImage
               src={user.image ?? "https://github.com/shadcn.png"}
@@ -56,11 +56,22 @@ export default async function DashboardPage() {
           </span>
         </div>
       </div>
-      <ProfilesForm
-        leetcode={profiles?.leetcode ?? null}
-        codechef={profiles?.codechef ?? null}
-        codeforces={profiles?.codeforces ?? null}
-      />
+      <div className="flex w-full flex-col items-center gap-4 lg:flex-row">
+        <ProfilesForm
+          leetcode={profiles?.leetcode ?? null}
+          codechef={profiles?.codechef ?? null}
+          codeforces={profiles?.codeforces ?? null}
+        />
+        <div className="grid size-full max-w-6xl grid-cols-3 grid-rows-3 gap-2 py-12">
+          <div className="col-span-2 row-span-1 grid h-24 rounded-lg bg-secondary"></div>
+          <div className="col-span-1 row-span-1 grid rounded-lg bg-secondary"></div>
+          <div className="col-span-1 row-span-1 grid rounded-lg bg-secondary"></div>
+          <div className="col-span-2 row-span-1 grid rounded-lg bg-secondary"></div>
+          <div className="col-span-1 row-span-1 grid rounded-lg bg-secondary"></div>
+          <div className="col-span-1 row-span-1 grid rounded-lg bg-secondary"></div>
+          <div className="col-span-1 row-span-1 grid rounded-lg bg-secondary"></div>
+        </div>
+      </div>
     </DashboardShell>
   )
 }

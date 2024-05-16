@@ -1,9 +1,9 @@
-# rcsen-next-template
+# dsa-demon
 
 An open source application built using the new router, server components and everything new in Next.js 13.
 
 > **Warning**
-> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@rcsen-next-template](https://twitter.com/rcsen-next-template).
+> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@dsa-demon](https://twitter.com/dsa-demon).
 > See the roadmap below.
 
 ## About this project
@@ -19,7 +19,7 @@ A few people have asked me to turn this into a starter. I think we could do that
 > **Warning**
 > This app is using the unstable releases for Next.js 13 and React 18. The new router and app dir is still in beta and not production-ready.
 > **Expect some performance hits when testing the dashboard**.
-> If you see something broken, you can ping me [@rcsen-next-template](https://twitter.com/rcsen-next-template).
+> If you see something broken, you can ping me [@dsa-demon](https://twitter.com/dsa-demon).
 
 ## Features
 
@@ -87,4 +87,4 @@ pnpm dev
 
 ## License
 
-Licensed under the [MIT license](https://github.com/rcsen-next-template/rcsen-next-template/blob/main/LICENSE.md).
+Licensed under the [MIT license](https://github.com/dsa-demon/dsa-demon/blob/main/LICENSE.md).

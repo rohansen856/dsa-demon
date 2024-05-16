@@ -10,7 +10,7 @@ interface ProfilesFormProps {
 
 export function ProfilesForm(props: ProfilesFormProps) {
   return (
-    <div className="relative w-[400px] max-w-full">
+    <div className="relative w-full max-w-md">
       <div className="flex w-full flex-col gap-3 rounded-lg border-2 p-4">
         <legend className="-ml-1 -mt-7 text-sm font-medium">
           Profile details

@@ -1,8 +1,9 @@
-import { Edit, EyeIcon, Link2 } from "lucide-react"
+import Link from "next/link"
+import { EyeIcon, Link2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -17,18 +18,23 @@ const notifications = []
 
 type CardProps = React.ComponentProps<typeof Card>
 
-export function CardDemo({ className, ...props }: CardProps) {
+interface ProfileCardProps extends CardProps {
+  username: string
+  url: string
+}
+
+export function ProfileCard({ className, ...props }: ProfileCardProps) {
   return (
     <Card className={cn("w-[380px]", className)} {...props}>
       <CardHeader>
         <CardTitle>
           <Avatar className="size-20">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarImage src="https://github.com/shadcn.png" alt="@dsa-demon" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </CardTitle>
         <CardDescription className="flex justify-between gap-2 rounded-lg bg-secondary px-4 py-2">
-          rohansen856 <Edit height={20} />{" "}
+          {props.username}
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
@@ -47,9 +53,9 @@ export function CardDemo({ className, ...props }: CardProps) {
         <div></div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">
+        <Link href={props.url} className={cn(buttonVariants(), "w-full")}>
           <Link2 className="mr-2 size-4" /> Visit your profile
-        </Button>
+        </Link>
       </CardFooter>
     </Card>
   )
