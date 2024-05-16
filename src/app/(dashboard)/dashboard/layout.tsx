@@ -46,7 +46,9 @@ export default async function DashboardLayout({
             />
           </div>
         </header>
-        {children}
+        <main className="flex w-full flex-1 flex-col overflow-hidden p-2 md:p-6 xl:p-10">
+          {children}
+        </main>
       </div>
       <SiteFooter className="border-t" />
     </div>

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
 
 import { getCurrentUser } from "@/lib/session"
+import { sleep } from "@/lib/utils"
 
 import { OverallSolved } from "./components/overall"
 
@@ -15,6 +16,7 @@ export default async function ProfilesPage() {
   if (!user) {
     redirect("/login")
   }
+  // await sleep(100000)
 
   return (
     <div className="flex size-full">

@@ -31,24 +31,19 @@ export function Sidemenu() {
       icon: <SquareTerminal className="size-5" />,
     },
     {
+      label: "Profiles",
+      href: "/dashboard/profiles",
+      icon: <Code2 className="size-5" />,
+    },
+    {
       label: "Friends",
       href: "/dashboard/friends",
       icon: <Bot className="size-5" />,
     },
     {
-      label: "Api",
-      href: "/dashboard",
-      icon: <Code2 className="size-5" />,
-    },
-    {
-      label: "Book",
-      href: "/dashboard",
+      label: "Compare",
+      href: "/dashboard/compare",
       icon: <Book className="size-5" />,
-    },
-    {
-      label: "Settings",
-      href: "/dashboard",
-      icon: <Settings2 className="size-5" />,
     },
   ]
 
@@ -79,19 +74,22 @@ export function Sidemenu() {
           </TooltipProvider>
         ))}
       </nav>
-      <nav className="mt-auto grid gap-1 p-2">
+      <nav className="mt-auto grid gap-1 p-2 pb-10">
         <TooltipProvider>
           {" "}
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="mt-auto rounded-lg"
-                aria-label="Help"
+              <Link
+                href={"/dashboard/billing"}
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "rounded-lg",
+                  path?.includes("/dashboard/billing") && "bg-muted"
+                )}
+                aria-label="Donate"
               >
                 <LifeBuoy className="size-5" />
-              </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
               Help
@@ -102,17 +100,20 @@ export function Sidemenu() {
           {" "}
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="mt-auto rounded-lg"
-                aria-label="Account"
+              <Link
+                href={"/dashboard/settings"}
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "rounded-lg",
+                  path?.includes("/dashboard/billing") && "bg-muted"
+                )}
+                aria-label="Settings"
               >
-                <SquareUser className="size-5" />
-              </Button>
+                <Settings2 className="size-5" />
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
-              Account
+              Settings
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

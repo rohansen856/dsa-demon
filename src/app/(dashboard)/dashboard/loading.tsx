@@ -6,17 +6,16 @@ import { DashboardShell } from "@/components/shell"
 
 export default function DashboardLoading() {
   return (
-    <div className="grid w-full flex-1 gap-12 p-4 md:grid-cols-[200px_1fr]">
-      <Skeleton className="m-2 w-[200px]" />
-      <main className="flex w-full flex-1 flex-col overflow-hidden">
-        <DashboardShell>
-          <DashboardHeader
-            heading="Dashboard"
-            text="Manage your account from here."
-          />
-          <Skeleton className="container h-[500px]" />
-        </DashboardShell>
-      </main>
-    </div>
+    <DashboardShell>
+      <DashboardHeader
+        heading="Dashboard"
+        text="Manage your account from here."
+      >
+        {/* <PostCreateButton /> */}
+      </DashboardHeader>
+      <div className="mb-6 flex flex-col items-start gap-6 rounded-lg">
+        <Skeleton className="h-56 w-full rounded-lg" />
+      </div>
+    </DashboardShell>
   )
 }
