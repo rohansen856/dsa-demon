@@ -2,12 +2,11 @@ import { SiteConfig } from "@/types"
 
 export const siteConfig: SiteConfig = {
   name: "dsa-demon",
-  description:
-    "An open source application built using the new router, server components and everything new in Next.js 13.",
-  url: "https://tx.dsa-demon.com",
-  ogImage: "https://tx.dsa-demon.com/og.jpg",
+  description: "An open source coding profile manager. Built for heavy coders.",
+  url: "https://dsa-demon.vercel.app",
+  ogImage: "https://dsa-demon.vercel.app/og.jpg",
   links: {
-    twitter: "https://twitter.com/dsa-demon",
-    github: "https://github.com/dsa-demon/dsa-demon",
+    twitter: "https://twitter.com/rohansen856",
+    github: "https://github.com/rohansen856/dsa-demon",
   },
 }

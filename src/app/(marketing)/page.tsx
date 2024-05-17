@@ -18,14 +18,17 @@ export default async function IndexPage() {
             Follow along on Twitter
           </Link>
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            An example app built using Next.js 13 server components.
+            Become the DEMON of dsa you always wanted to be!
           </h1>
           <p className="max-w-2xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            I&apos;m building a web app with Next.js 13 and open sourcing
-            everything. Follow along as we figure this out together.
+            IN dsa-demon you can manage your coding profiles, make coder friends
+            and compete with them
           </p>
           <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link
+              href="/dashboard"
+              className={cn(buttonVariants({ size: "lg" }))}
+            >
               Get Started
             </Link>
             <Link
@@ -88,7 +91,7 @@ export default async function IndexPage() {
               <div className="space-y-2">
                 <h3 className="font-bold">Database</h3>
                 <p className="text-sm text-muted-foreground">
-                  ORM using Prisma and deployed on PlanetScale.
+                  ORM using Prisma and deployed on Postgres.
                 </p>
               </div>
             </div>

@@ -1,10 +1,8 @@
-import { notFound } from "next/navigation"
+import { redirect } from "next/navigation"
 import { Triangle } from "lucide-react"
 
-import { dashboardConfig } from "@/config/dashboard"
 import { getCurrentUser } from "@/lib/session"
 import { Button } from "@/components/ui/button"
-import { DashboardNav } from "@/components/shared/nav"
 import { SiteFooter } from "@/components/shared/site-footer"
 import { UserAccountNav } from "@/components/user-account-nav"
 
@@ -20,7 +18,7 @@ export default async function DashboardLayout({
   const user = await getCurrentUser()
 
   if (!user) {
-    return notFound()
+    return redirect("/login")
   }
 
   return (
