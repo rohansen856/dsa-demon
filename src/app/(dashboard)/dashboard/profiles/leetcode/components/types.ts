@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export interface Submission {
+export interface LeetcodeSubmission {
   title: string
   titleSlug: string
   timestamp: string
@@ -9,18 +9,18 @@ export interface Submission {
   __typename: string
 }
 
-export interface SubmissionStats {
+export interface LeetcodeSubmissionStats {
   difficulty: string
   count: number
   submissions: number
 }
 
 export interface UserStats {
-  acSubmissionNum: SubmissionStats[]
-  totalSubmissionNum: SubmissionStats[]
+  acSubmissionNum: LeetcodeSubmissionStats[]
+  totalSubmissionNum: LeetcodeSubmissionStats[]
 }
 
-export interface SubmissionCalendar {
+export interface LeetcodeSubmissionCalendar {
   [timestamp: number]: number
 }
 
@@ -30,7 +30,7 @@ export interface TotalSubmissions {
   submissions: number
 }
 
-export interface TotalSubmissionsSchema {
+export interface LeetcodeTotalSubmissionsSchema {
   totalSolved: number
   totalSubmissions: TotalSubmissions[]
   totalQuestions: number
@@ -43,12 +43,12 @@ export interface TotalSubmissionsSchema {
   ranking: number
   contributionPoint: number
   reputation: number
-  submissionCalendar: SubmissionCalendar
-  recentSubmissions: Submission[]
+  submissionCalendar: LeetcodeSubmissionCalendar
+  recentSubmissions: LeetcodeSubmission[]
   matchedUserStats: UserStats
 }
 
-export const SubmissionSchema = z.object({
+export const LeetcodeSubmissionSchema = z.object({
   title: z.string(),
   titleSlug: z.string(),
   timestamp: z.string(),
@@ -57,22 +57,22 @@ export const SubmissionSchema = z.object({
   __typename: z.string(),
 })
 
-export const SubmissionStatsSchema = z.object({
+export const LeetcodeSubmissionStatsSchema = z.object({
   difficulty: z.string(),
   count: z.number(),
   submissions: z.number(),
 })
 
 export const UserStatsSchema = z.object({
-  acSubmissionNum: z.array(SubmissionStatsSchema),
-  totalSubmissionNum: z.array(SubmissionStatsSchema),
+  acSubmissionNum: z.array(LeetcodeSubmissionStatsSchema),
+  totalSubmissionNum: z.array(LeetcodeSubmissionStatsSchema),
 })
 
-export const SubmissionCalendarSchema = z.record(z.number())
+export const LeetcodeSubmissionCalendarSchema = z.record(z.number())
 
-export const TotalSubmissionsSchema = z.object({
+export const LeetcodeTotalSubmissionsSchema = z.object({
   totalSolved: z.number(),
-  totalSubmissions: z.array(SubmissionStatsSchema),
+  totalSubmissions: z.array(LeetcodeSubmissionStatsSchema),
   totalQuestions: z.number(),
   easySolved: z.number(),
   totalEasy: z.number(),
@@ -83,14 +83,14 @@ export const TotalSubmissionsSchema = z.object({
   ranking: z.number(),
   contributionPoint: z.number(),
   reputation: z.number(),
-  submissionCalendar: SubmissionCalendarSchema,
-  recentSubmissions: z.array(SubmissionSchema),
+  submissionCalendar: LeetcodeSubmissionCalendarSchema,
+  recentSubmissions: z.array(LeetcodeSubmissionSchema),
   matchedUserStats: UserStatsSchema,
 })
 
 //demo data
 
-export const data: TotalSubmissionsSchema = {
+export const data: LeetcodeTotalSubmissionsSchema = {
   totalSolved: 33,
   totalSubmissions: [
     { difficulty: "All", count: 37, submissions: 150 },

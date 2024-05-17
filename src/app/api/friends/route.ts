@@ -66,3 +66,35 @@ export async function GET(req: Request) {
     return new Response(null, { status: 500 })
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    // Ensure user is authentication and has access to this user.
+    const session = await getServerSession(authOptions)
+    if (!session?.user || !session.user.id) {
+      return new Response(null, { status: 403 })
+    }
+
+    // Get the request body and validate it.
+    const body = await req.json()
+    const payload = body as { id: string }
+
+    // Remove a friend
+    await db.friends.deleteMany({
+      where: {
+        OR: [
+          { userId: session.user.id, friendId: payload.id },
+          { userId: payload.id, friendId: session.user.id },
+        ],
+      },
+    })
+
+    return new Response(null, { status: 200 })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 })
+    }
+
+    return new Response(null, { status: 500 })
+  }
+}

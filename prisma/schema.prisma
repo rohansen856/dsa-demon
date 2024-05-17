@@ -87,6 +87,16 @@ model Friends {
   @@map(name: "friends")
 }
 
+model Groups {
+  id                String   @id @default(cuid())
+  name              String
+  userId            String
+  role              String   @default("member")
+  createdAt         DateTime @default(now()) @map(name: "created_at")
+  
+  @@map(name: "groups")
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique

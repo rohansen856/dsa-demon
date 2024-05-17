@@ -6,14 +6,14 @@ import {
   Book,
   Bot,
   Code2,
+  Handshake,
   LifeBuoy,
   Settings2,
   SquareTerminal,
-  SquareUser,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
@@ -38,6 +38,11 @@ export function Sidemenu() {
     {
       label: "Friends",
       href: "/dashboard/friends",
+      icon: <Handshake className="size-5" />,
+    },
+    {
+      label: "Groups",
+      href: "/dashboard/groups",
       icon: <Bot className="size-5" />,
     },
     {

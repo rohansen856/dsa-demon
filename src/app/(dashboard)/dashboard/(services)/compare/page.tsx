@@ -1,3 +1,3 @@
-export default function Compare() {
-  return "page not built yet!"
+export default async function Compare() {
+  return "hello"
 }

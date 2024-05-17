@@ -14,8 +14,6 @@ import {
 } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
 
-const notifications = []
-
 type CardProps = React.ComponentProps<typeof Card>
 
 interface ProfileCardProps extends CardProps {
@@ -23,7 +21,7 @@ interface ProfileCardProps extends CardProps {
   url: string
 }
 
-export function ProfileCard({ className, ...props }: ProfileCardProps) {
+export async function ProfileCard({ className, ...props }: ProfileCardProps) {
   return (
     <Card className={cn("w-[380px]", className)} {...props}>
       <CardHeader>

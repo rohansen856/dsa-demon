@@ -7,7 +7,7 @@ import { getCurrentUser } from "@/lib/session"
 
 import { ProfileCard } from "../components/profile-card"
 import { DifficultyChart } from "./components/difficulty-chart"
-import { TotalSubmissionsSchema } from "./components/types"
+import { LeetcodeTotalSubmissionsSchema } from "./components/types"
 
 export default async function Leetcode() {
   const user = await getCurrentUser()
@@ -30,7 +30,7 @@ export default async function Leetcode() {
     )
     if (!data) return "account not found"
 
-    userData = TotalSubmissionsSchema.parse(data)
+    userData = LeetcodeTotalSubmissionsSchema.parse(data)
   } catch (error) {
     userData = null
   }

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { MoreHorizontal } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -27,6 +28,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { CopyButton } from "@/components/shared/copy-button"
+
+import { RemoveFriendButton } from "./remove-friend-button"
 
 interface FriendslistProps {
   friends: {
@@ -93,15 +96,27 @@ export function Friendslist({ friends }: FriendslistProps) {
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
                       {friend.id && (
-                        <DropdownMenuItem>
-                          Copy id{" "}
-                          <CopyButton
-                            text={friend.id}
-                            className="ml-2 size-8"
-                          />{" "}
-                        </DropdownMenuItem>
+                        <>
+                          <DropdownMenuItem>
+                            Copy id{" "}
+                            <CopyButton
+                              text={friend.id}
+                              className="ml-2 size-8"
+                            />{" "}
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Link
+                              href={`/dashboard/compare/${friend.id}`}
+                              className="size-full"
+                            >
+                              Compare
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <RemoveFriendButton id={friend.id} />
+                          </DropdownMenuItem>
+                        </>
                       )}
-                      <DropdownMenuItem>Delete</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>
