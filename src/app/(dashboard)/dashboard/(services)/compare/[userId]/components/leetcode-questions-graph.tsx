@@ -1,6 +1,5 @@
 "use client"
 
-import { useMutation } from "@tanstack/react-query"
 import {
   Bar,
   BarChart,
@@ -10,6 +9,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
+
+import { getLeetcodeStats } from "./actions"
 
 const data = [
   {
@@ -36,11 +37,13 @@ const data = [
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
 
-export function LeetcodeQuestionsGraph() {
-  const { isPending, isError } = useMutation({
-    mutationFn: async () => {},
-  })
-
+export function LeetcodeQuestionsGraph({
+  username,
+  data,
+}: {
+  username: string
+  data: { difficulty: string; uv: number; pv: number }[]
+}) {
   return (
     <BarChart
       width={500}

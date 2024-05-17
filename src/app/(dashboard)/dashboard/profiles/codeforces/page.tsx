@@ -38,7 +38,7 @@ export default async function Codeforces() {
   if (!userData) return "account not found"
 
   const { data } = await axios.get(
-    `https://codeforces.com/api/user.rating?handle=${profile.codeforces}`
+    `${env.CODEFORCES_RATING_ROUTE}${profile.codeforces}`
   )
   if (!data) return "account not found"
   const ratingData = ContestResultSchema.parse(data)

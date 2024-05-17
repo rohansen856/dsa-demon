@@ -4,6 +4,8 @@ import { Post, User } from "@prisma/client"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 
+import { CodeforcesCompare } from "./components/codeforces-compare"
+import { LeetcodeCompare } from "./components/leetcode-compare"
 import { LeetcodeQuestionsGraph } from "./components/leetcode-questions-graph"
 import { UserCard } from "./components/user-card"
 
@@ -56,27 +58,32 @@ export default async function EditorPage({ params }: EditorPageProps) {
     )
 
   return (
-    <div className="flex w-full flex-wrap items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-6 lg:flex-row">
       <UserCard
-        userId={params.userId}
+        userid={params.userId}
         username={data.name ?? "No name"}
         image={data.image}
-        createdAt={data.createdAt}
+        createdat={data.createdAt}
       />
       <div className="space-y-10 bg-secondary p-2">
         <h4 className="text-md 3xl:text-3xl text-center md:text-xl xl:text-2xl">
           Leetcode
         </h4>
-        <div className="flex grow flex-wrap items-center justify-around">
-          <div>
-            <LeetcodeQuestionsGraph />
-            <p className="text-center">Solved questions</p>
-          </div>
-          <div>
-            <LeetcodeQuestionsGraph />
-            <p className="text-center">Total Submissions</p>
-          </div>
-        </div>
+        {userProfile.leetcode && opponentProfile.leetcode && (
+          <LeetcodeCompare
+            username={userProfile.leetcode}
+            opponentname={opponentProfile.leetcode}
+          />
+        )}
+        <h4 className="text-md 3xl:text-3xl pt-12 text-center md:text-xl xl:text-2xl">
+          Codeforces
+        </h4>
+        {userProfile.codeforces && opponentProfile.codeforces && (
+          <CodeforcesCompare
+            username={userProfile.codeforces}
+            opponentname={opponentProfile.codeforces}
+          />
+        )}
       </div>
     </div>
   )

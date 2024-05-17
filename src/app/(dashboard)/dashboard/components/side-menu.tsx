@@ -56,7 +56,7 @@ export function Sidemenu() {
     <>
       <nav className="grid gap-1 p-2">
         {menuItems.map((item) => (
-          <TooltipProvider>
+          <TooltipProvider key={item.href}>
             {" "}
             <Tooltip>
               <TooltipTrigger asChild>

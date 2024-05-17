@@ -18,15 +18,15 @@ import { Switch } from "@/components/ui/switch"
 type CardProps = React.ComponentProps<typeof Card>
 
 interface UserCardProps extends CardProps {
-  userId: string
+  userid: string
   username: string
   image: string | null
-  createdAt: Date | null
+  createdat: Date | null
 }
 
 export async function UserCard({ className, ...props }: UserCardProps) {
   const profile = await db.profile.findUnique({
-    where: { userId: props.userId },
+    where: { userId: props.userid },
   })
 
   return (
@@ -44,7 +44,7 @@ export async function UserCard({ className, ...props }: UserCardProps) {
         <CardDescription className="flex justify-between gap-2 rounded-lg bg-secondary px-4 py-2">
           {props.username}
         </CardDescription>
-        <CardContent>Since {props.createdAt?.toDateString()}</CardContent>
+        <CardContent>Since {props.createdat?.toDateString()}</CardContent>
       </CardHeader>
       <CardFooter className="flex gap-2">
         <Link

@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export interface LeetcodeSubmission {
+export interface LeetcodeSubmissionProps {
   title: string
   titleSlug: string
   timestamp: string
@@ -9,30 +9,30 @@ export interface LeetcodeSubmission {
   __typename: string
 }
 
-export interface LeetcodeSubmissionStats {
+export interface LeetcodeSubmissionStatsProps {
   difficulty: string
   count: number
   submissions: number
 }
 
 export interface UserStats {
-  acSubmissionNum: LeetcodeSubmissionStats[]
-  totalSubmissionNum: LeetcodeSubmissionStats[]
+  acSubmissionNum: LeetcodeSubmissionStatsProps[]
+  totalSubmissionNum: LeetcodeSubmissionStatsProps[]
 }
 
-export interface LeetcodeSubmissionCalendar {
+export interface LeetcodeSubmissionCalendarProps {
   [timestamp: number]: number
 }
 
-export interface TotalSubmissions {
+export interface LeetcodeTotalSubmissionsProps {
   difficulty: string
   count: number
   submissions: number
 }
 
-export interface LeetcodeTotalSubmissionsSchema {
+export interface LeetcodeTotalSubmissionsSchemaProps {
   totalSolved: number
-  totalSubmissions: TotalSubmissions[]
+  totalSubmissions: LeetcodeTotalSubmissionsProps[]
   totalQuestions: number
   easySolved: number
   totalEasy: number
@@ -43,8 +43,8 @@ export interface LeetcodeTotalSubmissionsSchema {
   ranking: number
   contributionPoint: number
   reputation: number
-  submissionCalendar: LeetcodeSubmissionCalendar
-  recentSubmissions: LeetcodeSubmission[]
+  submissionCalendar: LeetcodeSubmissionCalendarProps
+  recentSubmissions: LeetcodeSubmissionProps[]
   matchedUserStats: UserStats
 }
 
@@ -90,7 +90,7 @@ export const LeetcodeTotalSubmissionsSchema = z.object({
 
 //demo data
 
-export const data: LeetcodeTotalSubmissionsSchema = {
+export const data: LeetcodeTotalSubmissionsSchemaProps = {
   totalSolved: 33,
   totalSubmissions: [
     { difficulty: "All", count: 37, submissions: 150 },
