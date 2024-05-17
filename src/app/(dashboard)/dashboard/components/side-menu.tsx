@@ -60,7 +60,7 @@ export function Sidemenu() {
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
                     "rounded-lg",
-                    path?.includes(item.href) && "bg-muted"
+                    path === item.href && "bg-muted"
                   )}
                   aria-label={item.label}
                 >
