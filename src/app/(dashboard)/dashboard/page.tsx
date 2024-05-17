@@ -29,7 +29,6 @@ export default async function DashboardPage() {
     where: { userId: user.id },
   })
 
-  await sleep(5000)
   return (
     <DashboardShell>
       <DashboardHeader

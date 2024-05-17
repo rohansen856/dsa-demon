@@ -21,6 +21,8 @@ import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
+import { AddFriendButton } from "./add-friend-button"
+
 const FormSchema = z.object({
   userId: z.string().min(2, {
     message: "Invalid user id.",
@@ -30,6 +32,7 @@ const FormSchema = z.object({
 export function SearchUser() {
   const [isLoading, setLoading] = useState(false)
   const [user, setUser] = useState<{
+    id: string | null
     image: string | null
     name: string | null
   } | null>()
@@ -46,6 +49,7 @@ export function SearchUser() {
     try {
       const response = await axios.get(`/api/users/${data.userId}`)
       const result = response.data as {
+        id: string | null
         image: string | null
         name: string | null
       }
@@ -104,16 +108,19 @@ export function SearchUser() {
           />
         </form>
       </Form>
-      {user && (
-        <div className="mt-8 flex w-full items-center gap-6 rounded-lg bg-background p-4">
-          <Avatar className="size-16">
-            <AvatarImage
-              src={user.image ?? "https://github.com/shadcn.png"}
-              alt="@shadcn"
-            />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <p>{user?.name}</p>
+      {user?.id && (
+        <div className="mt-8 flex w-full flex-row flex-wrap items-center justify-between gap-6 rounded-lg bg-background p-4 pr-10">
+          <div className="flex items-center gap-2">
+            <Avatar className="size-16">
+              <AvatarImage
+                src={user.image ?? "https://github.com/shadcn.png"}
+                alt="@shadcn"
+              />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <p>{user?.name}</p>
+          </div>
+          <AddFriendButton id={user.id} />
         </div>
       )}
     </div>

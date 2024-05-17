@@ -16,7 +16,6 @@ export default async function ProfilesPage() {
   if (!user) {
     redirect("/login")
   }
-  // await sleep(100000)
 
   return (
     <div className="flex size-full">
@@ -27,4 +26,3 @@ export default async function ProfilesPage() {
     </div>
   )
 }
-// https://leetcode-api-faisalshohag.vercel.app/rohansen856
