@@ -52,20 +52,20 @@ export default async function EditorPage({ params }: EditorPageProps) {
   if (!opponentProfile)
     return (
       <p className="text-center">
-        The user you&apos; are trying to compare with haven&apos;t created
-        his/her profile yet
+        The user you&apos;re trying to compare with haven&apos;t created his/her
+        profile yet
       </p>
     )
 
   return (
-    <div className="flex w-full flex-col items-center gap-6 lg:flex-row">
+    <div className="flex w-full flex-col items-start gap-6 lg:flex-row">
       <UserCard
         userid={params.userId}
         username={data.name ?? "No name"}
         image={data.image}
         createdat={data.createdAt}
       />
-      <div className="space-y-10 bg-secondary p-2">
+      <div className="grow space-y-10 rounded bg-secondary p-2">
         <h4 className="text-md 3xl:text-3xl text-center md:text-xl xl:text-2xl">
           Leetcode
         </h4>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 
+import { Skeleton } from "@/components/ui/skeleton"
 import { ContestResult } from "@/app/(dashboard)/dashboard/profiles/codeforces/components/types"
 
 import { getCodeforcesStats, getLeetcodeStats } from "./actions"
@@ -27,7 +28,9 @@ export function CodeforcesCompare({
   useEffect(() => {
     getData()
   }, [])
-  if (!userdData || !opponentData) return "Loading..."
+
+  if (!userdData || !opponentData)
+    return <Skeleton className="h-72 w-full rounded bg-background" />
   return (
     <div className="flex flex-wrap justify-center">
       <div>
@@ -36,7 +39,7 @@ export function CodeforcesCompare({
       </div>
       <div>
         <CodeforcesContestGraph maxRating={1200} data={opponentData.result} />
-        <p className="text-center">{opponentname}&apos;s Attempted</p>
+        <p className="text-center">{opponentname}&apos;s Graph</p>
       </div>
     </div>
   )

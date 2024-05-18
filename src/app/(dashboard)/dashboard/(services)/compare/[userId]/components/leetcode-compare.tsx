@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 
+import { Skeleton } from "@/components/ui/skeleton"
+
 import { getLeetcodeStats } from "./actions"
 import { LeetcodeQuestionsGraph } from "./leetcode-questions-graph"
 
@@ -72,6 +74,9 @@ export function LeetcodeCompare({
   useEffect(() => {
     getData()
   }, [])
+
+  if (solvedData.length === 0)
+    return <Skeleton className="h-72 w-full rounded bg-background" />
   return (
     <div className="flex flex-wrap justify-center">
       <div>

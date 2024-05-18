@@ -89,6 +89,7 @@ model Friends {
 
 model Groups {
   id                String   @id @default(cuid())
+  groupId           String       @default(cuid())
   name              String
   userId            String
   role              String   @default("member")

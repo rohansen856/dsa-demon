@@ -1,6 +1,3 @@
-import { Check } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -10,10 +7,20 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { CopyButton } from "@/components/shared/copy-button"
 
-export function GroupsForm() {
+import { GroupCreateForm } from "./group-create-form"
+import { GroupSearchForm } from "./group-search-form"
+
+interface GroupsFormProps {
+  groups: {
+    groupId: string
+    name: string
+  }[]
+}
+
+export function GroupsForm({ groups }: GroupsFormProps) {
   return (
     <Tabs defaultValue="your groups" className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
@@ -26,21 +33,23 @@ export function GroupsForm() {
             <CardTitle>
               <Input placeholder="Find groups" />
             </CardTitle>
-            <CardDescription>Filter groups by name</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="space-y-1">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue="Pedro Duarte" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="username">Username</Label>
-              <Input id="username" defaultValue="@peduarte" />
+              {groups.map((group) => (
+                <div className="flex w-full cursor-pointer items-center gap-4 rounded-lg border p-2 hover:bg-secondary">
+                  <span className="size-12 rounded-full border border-white bg-secondary"></span>
+                  <span className="">
+                    <p className="text-lg">{group.name}</p>
+                    <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                      {group.groupId}{" "}
+                      <CopyButton text={group.groupId} className="h-full" />
+                    </p>
+                  </span>
+                </div>
+              ))}
             </div>
           </CardContent>
-          <CardFooter>
-            <Button>Save changes</Button>
-          </CardFooter>
         </Card>
       </TabsContent>
       <TabsContent value="joinOrCreate">
@@ -53,12 +62,10 @@ export function GroupsForm() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-1">
-              <Label htmlFor="current">Find group</Label>
-              <Input id="current" type="text" placeholder="Enter group id" />
+              <GroupSearchForm />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="new">Create group</Label>
-              <Input id="new" type="text" placeholder="Enter group name" />
+              <GroupCreateForm />
             </div>
           </CardContent>
         </Card>
