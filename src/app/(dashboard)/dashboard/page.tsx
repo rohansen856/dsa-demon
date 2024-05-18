@@ -7,9 +7,7 @@ import { sleep } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { DashboardHeader } from "@/components/header"
-// import { PostCreateButton } from "@/components/post-create-button"
 import { CopyButton } from "@/components/shared/copy-button"
-import { DashboardNav } from "@/components/shared/nav"
 import { DashboardShell } from "@/components/shell"
 
 import { ProfilesForm } from "./components/profiles-form"
@@ -34,9 +32,7 @@ export default async function DashboardPage() {
       <DashboardHeader
         heading="Dashboard"
         text="Manage your account from here."
-      >
-        {/* <PostCreateButton /> */}
-      </DashboardHeader>
+      />
       <div className="mb-6 flex flex-col items-start gap-6 rounded-lg bg-secondary p-4">
         <div className="flex flex-col rounded-full border-4 border-dashed border-background p-2 duration-300 hover:scale-105 lg:flex-row">
           <Avatar className="size-32">

@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { redirect } from "next/navigation"
 
 import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
@@ -16,7 +16,7 @@ export default async function DashboardLayout({
   const user = await getCurrentUser()
 
   if (!user) {
-    return notFound()
+    return redirect("/login")
   }
 
   return (

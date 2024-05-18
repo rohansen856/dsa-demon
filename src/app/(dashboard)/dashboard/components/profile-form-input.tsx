@@ -54,6 +54,12 @@ export function ProfileInputForm(props: ProfileInputFormProps) {
           title: "Profile Updated",
           description: `Your ${props.label} profile data has been succesfully updated`,
         })
+      if (response.status === 205)
+        return toast({
+          title: "Invalid Username",
+          variant: "destructive",
+          description: `This ${props.label} User does not exist`,
+        })
       return toast({
         title: "Profile Not Updated",
         description: `We were unable to update your ${props.label} profile data`,

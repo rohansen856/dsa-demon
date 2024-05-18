@@ -1,9 +1,10 @@
+import axios, { AxiosError } from "axios"
 import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
+import { env } from "@/env.mjs"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
-import { userNameSchema } from "@/lib/validations/user"
 
 export async function POST(req: Request) {
   try {
@@ -17,6 +18,13 @@ export async function POST(req: Request) {
     const body = await req.json()
     const payload = body as { profile: string; username: string }
 
+    const validProfile = await axios.get(
+      `${env.CODEFORCES_API_ROUTE}${payload.username}`
+    )
+
+    if (validProfile.data.status === "FAILED")
+      return new Response(null, { status: 205 })
+
     // Find if the profile exists.
     const profile = await db.profile.findFirst({
       where: { userId: session.user.id },
@@ -27,7 +35,7 @@ export async function POST(req: Request) {
       await db.profile.create({
         data: {
           userId: session.user.id,
-          codeforces: payload.profile,
+          codeforces: payload.username,
         },
       })
 
@@ -44,7 +52,9 @@ export async function POST(req: Request) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 })
     }
-
+    if (error instanceof AxiosError) {
+      return new Response(null, { status: 205 })
+    }
     return new Response(null, { status: 500 })
   }
 }

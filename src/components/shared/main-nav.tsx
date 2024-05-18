@@ -27,7 +27,7 @@ export function MainNav({ items, children }: MainNavProps) {
           {siteConfig.name}
         </span>
       </Link>
-      {items?.length ? (
+      {/* {items?.length ? (
         <nav className="hidden gap-6 md:flex">
           {items?.map((item, index) => (
             <Link
@@ -55,7 +55,7 @@ export function MainNav({ items, children }: MainNavProps) {
       </button>
       {showMobileMenu && items && (
         <MobileNav items={items}>{children}</MobileNav>
-      )}
+      )} */}
     </div>
   )
 }

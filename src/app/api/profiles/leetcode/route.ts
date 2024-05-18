@@ -1,6 +1,8 @@
+import axios from "axios"
 import { getServerSession } from "next-auth/next"
 import { z } from "zod"
 
+import { env } from "@/env.mjs"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { userNameSchema } from "@/lib/validations/user"
@@ -17,6 +19,12 @@ export async function POST(req: Request) {
     const body = await req.json()
     const payload = body as { profile: string; username: string }
 
+    const validProfile = await axios.get(
+      `${env.LEETCODE_API_ROUTE}${payload.username}`
+    )
+
+    if (validProfile.data.errors) return new Response(null, { status: 205 })
+
     // Find if the profile exists.
     const profile = await db.profile.findFirst({
       where: { userId: session.user.id },
@@ -27,7 +35,7 @@ export async function POST(req: Request) {
       await db.profile.create({
         data: {
           userId: session.user.id,
-          leetcode: payload.profile,
+          leetcode: payload.username,
         },
       })
 

@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator"
 
 import { ProfileCard } from "../components/profile-card"
 import { RankMeter } from "./components/rank-meter"
-import { RatingGraph } from "./components/rating-graph"
+import { CodeforcesRatingGraph } from "./components/rating-graph"
 import { CFUserSchema, ContestResultSchema } from "./components/types"
 
 export default async function Codeforces() {
@@ -52,16 +52,21 @@ export default async function Codeforces() {
         />
         <div className="p-2">
           <RankMeter rating={userData.rating} rank={userData.rank} />
-          <p className="rounded p-2 text-center">Rating: {userData.rating}</p>
+          <p className="rounded bg-secondary p-2 text-center">
+            Rating: {userData.rating}
+          </p>
+        </div>
+        <div className="mt-10 overflow-x-auto rounded bg-secondary p-2">
+          <CodeforcesRatingGraph
+            maxRating={userData.maxRating}
+            data={ratingData.result}
+          />
+          <p className="rounded bg-secondary p-2 text-center">
+            Rating Graph [Max: {userData.maxRating}]
+          </p>
         </div>
       </div>
       <Separator className="my-2" />
-      <div className="mt-10 overflow-x-auto p-2">
-        <RatingGraph maxRating={userData.maxRating} data={ratingData.result} />
-        <p className="rounded p-2 text-center">
-          Rating Graph [Max: {userData.maxRating}]
-        </p>
-      </div>
     </div>
   )
 }

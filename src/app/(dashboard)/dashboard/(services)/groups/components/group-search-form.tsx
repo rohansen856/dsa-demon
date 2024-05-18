@@ -6,6 +6,7 @@ import axios from "axios"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -52,8 +53,6 @@ export function GroupSearchForm() {
           title: "Group Found",
         })
       }
-
-      console.log(response)
       return toast({
         title: "Group Not Found",
         variant: "destructive",
@@ -103,7 +102,15 @@ export function GroupSearchForm() {
       ) : (
         group && (
           <div className="flex w-full cursor-pointer items-center gap-4 rounded-lg border p-2 hover:bg-secondary">
-            <span className="size-12 rounded-full border border-white bg-secondary"></span>
+            <Avatar className="size-12 border border-white bg-secondary">
+              <AvatarImage
+                src={`/images/avatars/coder (1).png`}
+                alt={group.name}
+              />
+              <AvatarFallback>
+                <Icons.spinner className="animate-spin" />
+              </AvatarFallback>
+            </Avatar>
             <span className="">
               <p className="text-lg">{group.name}</p>
               <p className="flex items-center gap-2 text-sm text-muted-foreground">

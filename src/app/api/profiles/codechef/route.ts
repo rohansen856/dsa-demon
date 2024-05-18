@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       await db.profile.create({
         data: {
           userId: session.user.id,
-          codechef: payload.profile,
+          codechef: payload.username,
         },
       })
 

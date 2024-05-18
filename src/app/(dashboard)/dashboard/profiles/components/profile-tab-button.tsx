@@ -22,7 +22,7 @@ const profiles = [
 export function ProfileTabButton() {
   const path = usePathname()
   return (
-    <div className="flex shrink gap-2 rounded-lg bg-secondary p-2">
+    <div className="flex shrink flex-wrap gap-2 rounded-lg bg-secondary p-2">
       {profiles.map((ids) => (
         <Link
           href={ids.href}

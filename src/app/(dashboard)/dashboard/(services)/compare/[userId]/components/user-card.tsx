@@ -48,20 +48,47 @@ export async function UserCard({ className, ...props }: UserCardProps) {
       </CardHeader>
       <CardFooter className="flex gap-2">
         <Link
-          href={profile?.leetcode ?? "/dashboard/compare"}
-          className={cn(buttonVariants(), "flex-1")}
+          href={
+            profile?.leetcode
+              ? `https://leetcode.com/u/${profile.leetcode}`
+              : "/dashboard/compare"
+          }
+          target="_blank"
+          className={cn(
+            buttonVariants(),
+            "flex-1",
+            profile?.leetcode ?? "bg-muted"
+          )}
         >
           <Link2 className="mr-2 size-4" /> LC
         </Link>
         <Link
-          href={profile?.codechef ?? "/dashboard/compare"}
-          className={cn(buttonVariants(), "flex-1")}
+          href={
+            profile?.codechef
+              ? `https://www.codechef.com/users/${profile.codechef}`
+              : "/dashboard/compare"
+          }
+          target="_blank"
+          className={cn(
+            buttonVariants(),
+            "flex-1",
+            profile?.codechef ?? "bg-muted"
+          )}
         >
           <Link2 className="mr-2 size-4" /> CC
         </Link>
         <Link
-          href={profile?.codeforces ?? "/dashboard/compare"}
-          className={cn(buttonVariants(), "flex-1")}
+          href={
+            profile?.codeforces
+              ? `https://codeforces.com/profile/${profile.codeforces}`
+              : "/dashboard/compare"
+          }
+          target="_blank"
+          className={cn(
+            buttonVariants(),
+            "flex-1",
+            profile?.codeforces ?? "bg-muted"
+          )}
         >
           <Link2 className="mr-2 size-4" /> CF
         </Link>

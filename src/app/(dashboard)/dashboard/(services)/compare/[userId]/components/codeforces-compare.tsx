@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react"
 
 import { Skeleton } from "@/components/ui/skeleton"
+import { CodeforcesRatingGraph } from "@/app/(dashboard)/dashboard/profiles/codeforces/components/rating-graph"
 import { ContestResult } from "@/app/(dashboard)/dashboard/profiles/codeforces/components/types"
 
 import { getCodeforcesStats, getLeetcodeStats } from "./actions"
-import { CodeforcesContestGraph } from "./codeforces-contest-graph"
 
 export function CodeforcesCompare({
   username,
@@ -34,11 +34,23 @@ export function CodeforcesCompare({
   return (
     <div className="flex flex-wrap justify-center">
       <div>
-        <CodeforcesContestGraph maxRating={1200} data={userdData.result} />
+        <CodeforcesRatingGraph
+          maxRating={
+            userdData.result.map((el) => el.newRating).sort((a, b) => b - a)[0]
+          }
+          data={userdData.result}
+        />
         <p className="text-center">{username}&apos;s Graph</p>
       </div>
       <div>
-        <CodeforcesContestGraph maxRating={1200} data={opponentData.result} />
+        <CodeforcesRatingGraph
+          maxRating={
+            opponentData.result
+              .map((el) => el.newRating)
+              .sort((a, b) => b - a)[0]
+          }
+          data={opponentData.result}
+        />
         <p className="text-center">{opponentname}&apos;s Graph</p>
       </div>
     </div>

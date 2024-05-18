@@ -1,26 +1,39 @@
-import { redirect } from "next/navigation"
+"use client"
 
-import { db } from "@/lib/db"
-import { getCurrentUser } from "@/lib/session"
-import { Separator } from "@/components/ui/separator"
+import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import axios from "axios"
 
-import { GroupsForm } from "./components/group-form"
+import { Skeleton } from "@/components/ui/skeleton"
 
-export default async function Groups() {
-  const user = await getCurrentUser()
+import { MembersList } from "./components/members-list"
 
-  if (!user) {
-    redirect("/login")
+export default function Groups() {
+  const [members, setMembers] = useState([])
+  const params = useSearchParams()
+
+  async function getMembers(id: string) {
+    try {
+      const { data } = await axios.post("/api/group/members", { groupId: id })
+      setMembers(data)
+    } catch (error) {
+      setMembers([])
+    }
   }
 
-  const myGroups = await db.groups.findMany({
-    where: { userId: user.id },
-  })
+  useEffect(() => {
+    const groupId = params?.get("groupId")
+    if (groupId) getMembers(groupId)
+  }, [params])
+
+  if (params?.get("groupId") && members.length === 0)
+    return <Skeleton className="w-full max-w-3xl grow" />
+
+  if (members.length === 0) return
 
   return (
-    <div className="flex w-full gap-4">
-      <GroupsForm groups={myGroups} />
-      <Separator orientation="vertical" />
+    <div className="flex w-full max-w-3xl grow gap-4 rounded-lg bg-secondary p-4">
+      <MembersList members={members} />
     </div>
   )
 }
