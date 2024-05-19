@@ -53,7 +53,6 @@ export function SearchUser() {
         image: string | null
         name: string | null
       }
-      console.log(response)
       if (!result)
         toast({
           title: "User Not Found!",

@@ -30,14 +30,14 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </a>
-            . Illustrations by{" "}
+            . Designed using{" "}
             <a
-              href="https://popsy.co"
+              href="https://www.figma.com/"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              Popsy
+              Figma
             </a>
             . The source code is available on{" "}
             <a

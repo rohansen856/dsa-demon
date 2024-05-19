@@ -15,15 +15,15 @@ export function AddFriendButton({ id }: AddFriendButtonProps) {
     setLoading(true)
     try {
       const { status } = await axios.post("/api/friends", { id })
-      if (status === 200)
+      if (status === 202)
         return toast({
-          title: "Already Friends",
-          variant: "destructive",
-          description: "You are already friends!",
+          title: "Friend Added",
+          description: "Refresh to see updated friends list",
         })
       return toast({
-        title: "Friend Added",
-        description: "Refresh to see updated friends list",
+        title: "Already Friends",
+        variant: "destructive",
+        description: "You are already friends!",
       })
     } catch (error) {
       return toast({

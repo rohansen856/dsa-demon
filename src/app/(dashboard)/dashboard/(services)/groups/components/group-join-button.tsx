@@ -26,8 +26,9 @@ export function GroupJoinButton({ groupId, ...props }: GroupJoinButtonProps) {
 
       if (response.status === 203)
         return toast({
-          title: "Already a menber!",
-          description: "You are already a member of the group!",
+          title: "Already a member!",
+          variant: "destructive",
+          description: "You are already a member of the group.",
         })
       return toast({
         title: "Couldn't join Group",
