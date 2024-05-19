@@ -98,6 +98,17 @@ model Groups {
   @@map(name: "groups")
 }
 
+model Notifications {
+  id                String   @id @default(cuid())
+  senderId          String
+  senderName        String
+  receiverId        String
+  receiverName      String
+  createdAt         DateTime @default(now()) @map(name: "created_at")
+
+  @@map(name: "notifications")
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique
