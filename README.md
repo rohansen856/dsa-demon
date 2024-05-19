@@ -3,7 +3,7 @@
 An open source application built using the new router, server components and everything new in Next.js 13.
 
 > **Warning**
-> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@dsa-demon](https://twitter.com/dsa-demon).
+> This app is a work in progress. I'm building this in public. You can follow me on Twitter [@rohansen856](https://twitter.com/rohansen856).
 > See the roadmap below.
 
 ## About this project
@@ -16,10 +16,7 @@ A few people have asked me to turn this into a starter. I think we could do that
 
 ## Note on Performance
 
-> **Warning**
-> This app is using the unstable releases for Next.js 13 and React 18. The new router and app dir is still in beta and not production-ready.
-> **Expect some performance hits when testing the dashboard**.
-> If you see something broken, you can ping me [@dsa-demon](https://twitter.com/dsa-demon).
+> I prefer **Speed over Style**. This project is built with minimal animations to ensure insanely fast load speed and a error resistant backend.
 
 ## Features
 
@@ -48,15 +45,17 @@ A few people have asked me to turn this into a starter. I think we could do that
 - [x] ~Subscriptions using Stripe~
 - [x] ~Responsive styles~
 - [x] ~Add OG image for blog using @vercel/og~
-- [x] Dark mode
+- [x] ~Dark mode
+- [x] Add notifications system
+- [x] Add chat functionality
 
 ## Known Issues
 
 A list of things not working right now:
 
-1. ~GitHub authentication (use email)~
+1. ~GitHub authentication~
 2. ~[Prisma: Error: ENOENT: no such file or directory, open '/var/task/.next/server/chunks/schema.prisma'](https://github.com/prisma/prisma/issues/16117)~
-3. ~[Next.js 13: Client side navigation does not update head](https://github.com/vercel/next.js/issues/42414)~
+3. ~[Next.js 14: Client side navigation does not update head](https://github.com/vercel/next.js/issues/42414)~
 4. [Cannot use opengraph-image.tsx inside catch-all routes](https://github.com/vercel/next.js/issues/48162)
 
 ## Why not tRPC, Turborepo or X?
@@ -67,10 +66,20 @@ If you have some suggestions, feel free to create an issue.
 
 ## Running Locally
 
-1. Install dependencies using pnpm:
+> First fork/clone this repo. Then,
+
+### Using make
 
 ```sh
-pnpm install
+make begin
+```
+
+### Manual installation
+
+1. Install dependencies using npm:
+
+```sh
+npm install
 ```
 
 2. Copy `.env.example` to `.env.local` and update the variables.
@@ -82,9 +91,9 @@ cp .env.example .env.local
 3. Start the development server:
 
 ```sh
-pnpm dev
+npm run dev
 ```
 
 ## License
 
-Licensed under the [MIT license](https://github.com/dsa-demon/dsa-demon/blob/main/LICENSE.md).
+Licensed under the [MIT license](https://github.com/rohansen856/dsa-demon/blob/master/LICENSE.md).
