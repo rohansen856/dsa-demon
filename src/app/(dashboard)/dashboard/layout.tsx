@@ -37,7 +37,7 @@ export default async function DashboardLayout({
         <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
           <h1 className="text-xl font-semibold">Dsa-Demon</h1>
           <div className="m-auto mr-4 flex items-center gap-4 md:gap-8 lg:mr-16 xl:gap-12 2xl:mr-24">
-            <NotificationButton />
+            <NotificationButton userId={user.id} />
             <UserAccountNav
               user={{
                 name: user.name,

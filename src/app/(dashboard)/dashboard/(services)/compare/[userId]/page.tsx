@@ -69,20 +69,24 @@ export default async function EditorPage({ params }: EditorPageProps) {
         <h4 className="text-md 3xl:text-3xl text-center md:text-xl xl:text-2xl">
           Leetcode
         </h4>
-        {userProfile.leetcode && opponentProfile.leetcode && (
+        {userProfile.leetcode && opponentProfile.leetcode ? (
           <LeetcodeCompare
             username={userProfile.leetcode}
             opponentname={opponentProfile.leetcode}
           />
+        ) : (
+          <p className="text-center">Profile not created yet!</p>
         )}
         <h4 className="text-md 3xl:text-3xl pt-12 text-center md:text-xl xl:text-2xl">
           Codeforces
         </h4>
-        {userProfile.codeforces && opponentProfile.codeforces && (
+        {userProfile.codeforces && opponentProfile.codeforces ? (
           <CodeforcesCompare
             username={userProfile.codeforces}
             opponentname={opponentProfile.codeforces}
           />
+        ) : (
+          <p className="text-center">Profile not created yet!</p>
         )}
       </div>
     </div>

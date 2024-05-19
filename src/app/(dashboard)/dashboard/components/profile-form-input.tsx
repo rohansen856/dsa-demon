@@ -45,6 +45,13 @@ export function ProfileInputForm(props: ProfileInputFormProps) {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setLoading(true)
     try {
+      if (data.username === props.value)
+        return toast({
+          title: "Profile Unchanged!",
+          variant: "destructive",
+          description: `Your ${props.label} profile data is same as before!`,
+        })
+
       const response = await axios.post(`/api/profiles/${props.name}`, {
         ...data,
         profile: props.name,

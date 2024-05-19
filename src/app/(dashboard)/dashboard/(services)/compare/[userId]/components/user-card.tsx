@@ -57,7 +57,7 @@ export async function UserCard({ className, ...props }: UserCardProps) {
           className={cn(
             buttonVariants(),
             "flex-1",
-            profile?.leetcode ?? "bg-muted"
+            profile?.leetcode ?? "cursor-not-allowed bg-muted hover:bg-muted"
           )}
         >
           <Link2 className="mr-2 size-4" /> LC
@@ -72,7 +72,7 @@ export async function UserCard({ className, ...props }: UserCardProps) {
           className={cn(
             buttonVariants(),
             "flex-1",
-            profile?.codechef ?? "bg-muted"
+            profile?.codechef ?? "cursor-not-allowed bg-muted hover:bg-muted"
           )}
         >
           <Link2 className="mr-2 size-4" /> CC
@@ -87,7 +87,7 @@ export async function UserCard({ className, ...props }: UserCardProps) {
           className={cn(
             buttonVariants(),
             "flex-1",
-            profile?.codeforces ?? "bg-muted"
+            profile?.codeforces ?? "cursor-not-allowed bg-muted hover:bg-muted"
           )}
         >
           <Link2 className="mr-2 size-4" /> CF

@@ -31,7 +31,7 @@ export default function LoginPage() {
         <div className="flex flex-col space-y-2 text-center">
           <Icons.logo className="mx-auto size-6" />
           <h1 className="text-2xl font-semibold tracking-tight">
-            Welcome back
+            Welcome to dsa-demon
           </h1>
           <p className="text-sm text-muted-foreground">
             Sign in to your account
@@ -44,14 +44,14 @@ export default function LoginPage() {
         <p className="px-8 text-center text-sm text-muted-foreground">
           By signing up, you agree to our{" "}
           <Link
-            href="/terms"
+            href="/terms-of-services"
             className="hover:text-brand underline underline-offset-4"
           >
             Terms of Service
           </Link>{" "}
           and{" "}
           <Link
-            href="/privacy"
+            href="/privacy-policy"
             className="hover:text-brand underline underline-offset-4"
           >
             Privacy Policy

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
@@ -97,7 +98,7 @@ export function Sidemenu() {
               </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
-              Help
+              Support
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
