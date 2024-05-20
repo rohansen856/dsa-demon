@@ -105,6 +105,10 @@ model Notifications {
   receiverId        String
   receiverName      String
   createdAt         DateTime @default(now()) @map(name: "created_at")
+  subject           String
+  text              String
+  read              Boolean  @default(false)
+  labels            String[]
 
   @@map(name: "notifications")
 }

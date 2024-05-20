@@ -1,9 +1,15 @@
 import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
+
+import { db } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
 
 import { Mail } from "./components/mail"
-import { accounts, mails } from "./data"
+import { accounts } from "./data"
 
-export default function MailPage() {
+export default async function MailPage() {
+  const user = await getCurrentUser()
+  if (!user) return redirect("/login")
   const layout = cookies().get("react-resizable-panels:layout")
   const collapsed = cookies().get("react-resizable-panels:collapsed")
 
@@ -13,6 +19,10 @@ export default function MailPage() {
   const defaultCollapsed = (
     collapsed ? JSON.parse(collapsed.value) : undefined
   ) as boolean | undefined
+
+  const mails = await db.notifications.findMany({
+    where: { receiverId: user.id },
+  })
 
   return (
     <div className="-m-10">

@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 
 import { Mail } from "../data"
 import { useMail } from "../use-mail"
+import { setAsRead } from "./actions"
 
 interface MailListProps {
   items: Mail[]
@@ -26,17 +27,20 @@ export function MailList({ items }: MailListProps) {
               "flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent",
               mail.selected === item.id && "bg-muted"
             )}
-            onClick={() =>
+            onClick={() => {
               setMail({
                 ...mail,
                 selected: item.id,
               })
-            }
+              if (!item.read) {
+                setAsRead(item.id)
+              }
+            }}
           >
             <div className="flex w-full flex-col gap-1">
               <div className="flex items-center">
                 <div className="flex items-center gap-2">
-                  <div className="font-semibold">{item.name}</div>
+                  <div className="font-semibold">{item.senderName}</div>
                   {!item.read && (
                     <span className="flex size-2 rounded-full bg-blue-600" />
                   )}
@@ -49,7 +53,7 @@ export function MailList({ items }: MailListProps) {
                       : "text-muted-foreground"
                   )}
                 >
-                  {formatDistanceToNow(new Date(item.date), {
+                  {formatDistanceToNow(new Date(item.createdAt), {
                     addSuffix: true,
                   })}
                 </div>

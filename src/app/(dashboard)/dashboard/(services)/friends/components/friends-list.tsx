@@ -57,7 +57,7 @@ export function Friendslist({ friends }: FriendslistProps) {
                 <span className="sr-only">Image</span>
               </TableHead>
               <TableHead>Name</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead className="hidden sm:table-cell">Status</TableHead>
               <TableHead className="hidden md:table-cell">Since</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
@@ -79,7 +79,7 @@ export function Friendslist({ friends }: FriendslistProps) {
                 <TableCell className="font-medium">
                   {friend.name ?? "no name"}
                 </TableCell>
-                <TableCell>
+                <TableCell className="hidden sm:table-cell">
                   <Badge variant="outline">friend</Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">

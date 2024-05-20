@@ -10,7 +10,7 @@ interface NotificationButton {
 
 export async function NotificationButton({ userId }: NotificationButton) {
   const notifications = await db.notifications.count({
-    where: { receiverId: userId },
+    where: { receiverId: userId, read: false },
   })
   return (
     <Link

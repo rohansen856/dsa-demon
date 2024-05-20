@@ -37,8 +37,8 @@ export default async function Leetcode() {
   if (!userData) return "account not found"
 
   return (
-    <div className="flex pt-4">
-      <div className="flex w-full flex-col items-center justify-between xl:flex-row">
+    <div className="flex">
+      <div className="flex w-full flex-col flex-wrap items-center justify-between lg:flex-row lg:items-start">
         <ProfileCard
           username={profile.leetcode}
           url={`https://leetcode.com/u/${profile.leetcode}`}

@@ -25,9 +25,9 @@ export default async function DashboardLayout({
         heading="Coding Profiles"
         text="Manage account and website Profiles."
       />
-      <div className="w-full p-2">
+      <div className="flex w-full flex-wrap justify-center gap-4 p-2">
         <ProfileTabButton />
-        {children}
+        <main className="grow">{children}</main>
       </div>
     </DashboardShell>
   )

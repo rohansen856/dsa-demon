@@ -44,8 +44,8 @@ export default async function Codeforces() {
   const ratingData = ContestResultSchema.parse(data)
 
   return (
-    <div className="flex flex-col items-center justify-center pt-4">
-      <div className="flex w-full flex-col items-center justify-between xl:flex-row">
+    <div className="flex flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-between gap-4 lg:items-start xl:flex-row">
         <ProfileCard
           username={profile.codeforces}
           url={`https://codeforces.com/profile/${profile.codeforces}`}
@@ -56,7 +56,7 @@ export default async function Codeforces() {
             Rating: {userData.rating}
           </p>
         </div>
-        <div className="mt-10 overflow-x-auto rounded bg-secondary p-2">
+        <div className="overflow-x-auto rounded bg-secondary px-2">
           <CodeforcesRatingGraph
             maxRating={userData.maxRating}
             data={ratingData.result}
@@ -66,7 +66,6 @@ export default async function Codeforces() {
           </p>
         </div>
       </div>
-      <Separator className="my-2" />
     </div>
   )
 }

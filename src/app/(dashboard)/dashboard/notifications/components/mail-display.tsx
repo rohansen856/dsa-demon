@@ -189,25 +189,25 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           <div className="flex items-start p-4">
             <div className="flex items-start gap-4 text-sm">
               <Avatar>
-                <AvatarImage alt={mail.name} />
+                <AvatarImage alt={mail.senderName} />
                 <AvatarFallback>
-                  {mail.name
+                  {mail.senderName
                     .split(" ")
                     .map((chunk) => chunk[0])
                     .join("")}
                 </AvatarFallback>
               </Avatar>
               <div className="grid gap-1">
-                <div className="font-semibold">{mail.name}</div>
+                <div className="font-semibold">{mail.senderName}</div>
                 <div className="line-clamp-1 text-xs">{mail.subject}</div>
                 <div className="line-clamp-1 text-xs">
-                  <span className="font-medium">Reply-To:</span> {mail.email}
+                  <span className="font-medium">Reply-To:</span> {mail.senderId}
                 </div>
               </div>
             </div>
-            {mail.date && (
+            {mail.createdAt && (
               <div className="ml-auto text-xs text-muted-foreground">
-                {format(new Date(mail.date), "PPpp")}
+                {format(new Date(mail.createdAt), "PPpp")}
               </div>
             )}
           </div>
@@ -221,7 +221,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
               <div className="grid gap-4">
                 <Textarea
                   className="p-4"
-                  placeholder={`Reply ${mail.name}...`}
+                  placeholder={`Reply ${mail.senderName}...`}
                 />
                 <div className="flex items-center">
                   <Label
