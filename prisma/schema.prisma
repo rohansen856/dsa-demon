@@ -82,6 +82,7 @@ model Friends {
   id                String   @id @default(cuid())
   userId            String
   friendId          String
+  accepted          Boolean  @default(false)
   createdAt         DateTime @default(now()) @map(name: "created_at")
   
   @@map(name: "friends")

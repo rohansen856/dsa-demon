@@ -30,6 +30,7 @@ import {
 import { CopyButton } from "@/components/shared/copy-button"
 
 interface MembersListProps {
+  group: string
   members: {
     id: string | null
     image: string | null
@@ -38,11 +39,11 @@ interface MembersListProps {
   }[]
 }
 
-export function MembersList({ members }: MembersListProps) {
+export function MembersList({ group, members }: MembersListProps) {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>members</CardTitle>
+        <CardTitle>{group}</CardTitle>
         <CardDescription>List of all the group members.</CardDescription>
       </CardHeader>
       <CardContent>

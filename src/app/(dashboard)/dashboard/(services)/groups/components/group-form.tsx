@@ -42,7 +42,7 @@ export function GroupsForm({ groups }: GroupsFormProps) {
             <div className="space-y-1">
               {groups.map((group, index) => (
                 <Link
-                  href={`/dashboard/groups?groupId=${group.groupId}`}
+                  href={`/dashboard/groups?groupId=${group.groupId}&groupName=${group.name}`}
                   className="flex w-full cursor-pointer items-center gap-4 rounded-lg border p-2 hover:bg-secondary"
                 >
                   <Avatar className="size-12 border border-white bg-secondary">

@@ -15,10 +15,10 @@ export function LeetcodeCompare({
   opponentname: string
 }) {
   const [solvedData, setSolvedData] = useState<
-    { difficulty: string; uv: number; pv: number }[]
+    { difficulty: string; user: number; opponent: number }[]
   >([])
   const [attemptedData, setAttemptedData] = useState<
-    { difficulty: string; uv: number; pv: number }[]
+    { difficulty: string; user: number; opponent: number }[]
   >([])
   async function getData() {
     const userData = await getLeetcodeStats(username)
@@ -27,46 +27,46 @@ export function LeetcodeCompare({
     setSolvedData([
       {
         difficulty: "All",
-        uv: userData?.totalSolved ?? 0,
-        pv: opponentData?.totalSolved ?? 0,
+        user: userData?.totalSolved ?? 0,
+        opponent: opponentData?.totalSolved ?? 0,
       },
       {
         difficulty: "Hard",
-        uv: userData?.hardSolved ?? 0,
-        pv: opponentData?.hardSolved ?? 0,
+        user: userData?.hardSolved ?? 0,
+        opponent: opponentData?.hardSolved ?? 0,
       },
       {
         difficulty: "Medium",
-        uv: userData?.mediumSolved ?? 0,
-        pv: opponentData?.mediumSolved ?? 0,
+        user: userData?.mediumSolved ?? 0,
+        opponent: opponentData?.mediumSolved ?? 0,
       },
       {
         difficulty: "Easy",
-        uv: userData?.easySolved ?? 0,
-        pv: opponentData?.easySolved ?? 0,
+        user: userData?.easySolved ?? 0,
+        opponent: opponentData?.easySolved ?? 0,
       },
     ])
 
     setAttemptedData([
       {
         difficulty: userData?.totalSubmissions[0].difficulty ?? "",
-        uv: userData?.totalSubmissions[0].submissions ?? 0,
-        pv: opponentData?.totalSubmissions[0].submissions ?? 0,
+        user: userData?.totalSubmissions[0].submissions ?? 0,
+        opponent: opponentData?.totalSubmissions[0].submissions ?? 0,
       },
       {
         difficulty: userData?.totalSubmissions[1].difficulty ?? "",
-        uv: userData?.totalSubmissions[1].submissions ?? 0,
-        pv: opponentData?.totalSubmissions[1].submissions ?? 0,
+        user: userData?.totalSubmissions[1].submissions ?? 0,
+        opponent: opponentData?.totalSubmissions[1].submissions ?? 0,
       },
       {
         difficulty: userData?.totalSubmissions[2].difficulty ?? "",
-        uv: userData?.totalSubmissions[2].submissions ?? 0,
-        pv: opponentData?.totalSubmissions[2].submissions ?? 0,
+        user: userData?.totalSubmissions[2].submissions ?? 0,
+        opponent: opponentData?.totalSubmissions[2].submissions ?? 0,
       },
       {
         difficulty: userData?.totalSubmissions[3].difficulty ?? "",
-        uv: userData?.totalSubmissions[3].submissions ?? 0,
-        pv: opponentData?.totalSubmissions[3].submissions ?? 0,
+        user: userData?.totalSubmissions[3].submissions ?? 0,
+        opponent: opponentData?.totalSubmissions[3].submissions ?? 0,
       },
     ])
   }
@@ -80,11 +80,11 @@ export function LeetcodeCompare({
   return (
     <div className="flex flex-wrap justify-center">
       <div>
-        <LeetcodeQuestionsGraph username={username} data={solvedData} />
+        <LeetcodeQuestionsGraph data={solvedData} />
         <p className="text-center">Total Solved</p>
       </div>
       <div>
-        <LeetcodeQuestionsGraph username={username} data={attemptedData} />
+        <LeetcodeQuestionsGraph data={attemptedData} />
         <p className="text-center">Total Attempted</p>
       </div>
     </div>

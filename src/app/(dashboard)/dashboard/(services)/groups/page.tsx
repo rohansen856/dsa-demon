@@ -10,6 +10,7 @@ import { MembersList } from "./components/members-list"
 
 export default function Groups() {
   const [members, setMembers] = useState([])
+  const [groupName, setGroupName] = useState("")
   const params = useSearchParams()
 
   async function getMembers(id: string) {
@@ -23,7 +24,11 @@ export default function Groups() {
 
   useEffect(() => {
     const groupId = params?.get("groupId")
-    if (groupId) getMembers(groupId)
+    const groupName = params?.get("groupName")
+    if (groupId && groupName) {
+      setGroupName(groupName)
+      getMembers(groupId)
+    }
   }, [params])
 
   if (params?.get("groupId") && members.length === 0)
@@ -33,7 +38,7 @@ export default function Groups() {
 
   return (
     <div className="flex w-full max-w-3xl grow gap-4 rounded-lg bg-secondary p-4">
-      <MembersList members={members} />
+      <MembersList group={groupName} members={members} />
     </div>
   )
 }

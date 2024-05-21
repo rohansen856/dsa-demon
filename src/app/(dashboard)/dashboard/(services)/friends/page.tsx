@@ -33,8 +33,18 @@ export default async function Friends() {
       <div className="col-span-2">
         <Friendslist friends={allUsers} />
       </div>
-      <div className="col-span-1 flex max-h-[50vh] flex-col items-center rounded-lg bg-secondary p-4">
-        <SearchUser />
+      <div className="space-y-4">
+        <div className="col-span-1 flex max-h-[35vh] flex-col items-center rounded-lg bg-secondary p-4">
+          <SearchUser />
+        </div>
+        <div className="flex w-full justify-evenly gap-2 rounded-lg bg-secondary p-2">
+          <span className="flex-1 rounded-lg bg-background p-2 cursor-pointer">
+            Pending: 0
+          </span>
+          <span className="flex-1 rounded-lg bg-background p-2 cursor-pointer">
+            Requests: 0
+          </span>
+        </div>
       </div>
     </div>
   )

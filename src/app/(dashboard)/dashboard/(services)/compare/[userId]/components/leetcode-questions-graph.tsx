@@ -38,11 +38,9 @@ const data = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
 
 export function LeetcodeQuestionsGraph({
-  username,
   data,
 }: {
-  username: string
-  data: { difficulty: string; uv: number; pv: number }[]
+  data: { difficulty: string; user: number; opponent: number }[]
 }) {
   return (
     <BarChart
@@ -61,8 +59,8 @@ export function LeetcodeQuestionsGraph({
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="pv" fill={COLORS[1]} />
-      <Bar dataKey="uv" fill={COLORS[2]} />
+      <Bar dataKey="user" fill={COLORS[1]} />
+      <Bar dataKey="opponent" fill={COLORS[2]} />
 
       <Tooltip />
       <Legend />
